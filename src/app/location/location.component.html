@@ -32,10 +32,12 @@
     <ion-row>
       <ion-col size="1"></ion-col>
       <ion-col size="10">
-            <!-- Create new component to show the elements to display here -->
-            <li *ngFor="let city of citiesLists" class="list-item">
-              <app-list-of-items [item]="city"></app-list-of-items>
-            </li>
+            <!-- show the elements to display here -->
+            <div class="list_of_locations" id="scrollbar2">
+              <li *ngFor="let city of citiesLists" class="list-item">
+                <app-list-of-items [item]="city"></app-list-of-items>
+              </li>
+            </div>
       </ion-col>
       <ion-col size="1"></ion-col>
     </ion-row>
