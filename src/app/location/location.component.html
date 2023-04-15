@@ -35,7 +35,7 @@
             <!-- show the elements to display here -->
             <div class="list_of_locations" id="scrollbar2">
               <li *ngFor="let city of citiesLists" class="list-item">
-                <app-list-of-items [item]="city"></app-list-of-items>
+                <app-list-of-items [item]="city" (click)="addCity(city)"></app-list-of-items>
               </li>
             </div>
       </ion-col>

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 
@@ -6,8 +7,10 @@ import { IonicModule } from '@ionic/angular';
   templateUrl: './list-of-items.component.html',
   styleUrls: ['./list-of-items.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, CommonModule]
 })
 export class ListOfItemsComponent {
   @Input('item') item: string = '';
+
+  constructor() {}
 }

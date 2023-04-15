@@ -24,5 +24,9 @@ export class LocationComponent {
     this.locationService.countryName(this.inputValue.value)
    }
 
+   addCity(city: string) {
+    this.locationService.addCity(city);
+  }
+
    constructor(private locationService: LocationServiceService) {}
 }
