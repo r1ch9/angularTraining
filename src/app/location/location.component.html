@@ -1,0 +1,44 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Title of the app -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col class="test" size="10"><strong>{{title | titlecase}}</strong></ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- input of the app -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-item class="input-box">
+          <ion-icon name="search-sharp" class="input-icon" slot="start"></ion-icon>
+
+          <ion-input label="Enter a valid location" #inputValue (keyup)="sendCountryName()"
+            label-placement="floating" class="location-input" placeholder="Enter a valid location"></ion-input>
+
+
+        </ion-item>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- List of selected cities -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+            <!-- Create new component to show the elements to display here -->
+            <li *ngFor="let city of citiesLists" class="list-item">
+              <app-list-of-items [item]="city"></app-list-of-items>
+            </li>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

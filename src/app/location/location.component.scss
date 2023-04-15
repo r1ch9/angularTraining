@@ -1,0 +1,24 @@
+.test{
+    color: #000000;
+    text-align: center;
+}
+
+.input-box {
+    border: 2px solid lightgray;
+    border-radius: 5px;
+
+    .input-icon {
+        color: #000000;
+    }
+
+    .location-input .item-inner {
+        border-style: none !important;
+        border-color: white;
+        --placeholder-color: lightgray;
+    }
+}
+
+.list-item {
+    list-style-type: none;
+    margin-bottom: 6px;
+}
