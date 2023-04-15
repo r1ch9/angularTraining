@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal, IonicModule } from '@ionic/angular';
 
+import { OverlayEventDetail } from '@ionic/core/components';
 
 import { LocationComponent } from '../location/location.component';
 

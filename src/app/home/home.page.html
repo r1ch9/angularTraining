@@ -1,6 +1,18 @@
 
 <ion-app>
-  <div class="main-component">
-    <app-location></app-location>
-  </div>
+  <ion-header>
+    <ion-toolbar>
+      <ion-button id="open-modal">Open</ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-modal trigger="open-modal" >
+      <ng-template>
+        <ion-content>
+          <app-location></app-location>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
 </ion-app>
