@@ -28,7 +28,7 @@ import { WeatherService } from '../../services/weather.service';
   ]
 })
 export class WeatherPage {
-  constructor(private weatherService: WeatherService, private router: Router){}
+  constructor(private weatherService: WeatherService){}
 
   get listOfSelectedCities() {
     return this.weatherService.listOfSelectedCities;

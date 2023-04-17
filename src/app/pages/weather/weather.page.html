@@ -1,7 +1,11 @@
 <app-navbar></app-navbar>
 
 <ion-content>
-  <div *ngFor="let city of listOfSelectedCities">
-    <app-weather-card [city]="city"></app-weather-card>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <span *ngFor="let city of listOfSelectedCities">
+        <app-weather-card [city]="city"></app-weather-card>
+      </span>
+    </ion-row>
+  </ion-grid>
 </ion-content>
