@@ -8,6 +8,7 @@ import { CityDatum } from 'src/app/interfaces/cities.interface';
 
 // Interfaces
 import { CityWeather } from 'src/app/interfaces/cityWeather.interface';
+import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
   selector: 'app-weather-card',
@@ -45,5 +46,9 @@ export class WeatherCardComponent implements OnInit{
     }
   }
 
-  constructor(private http: HttpClient) {}
+  removeLocation(city: CityDatum) {
+    this.weatherService.removeLication(city)
+  }
+
+  constructor(private http: HttpClient, private weatherService: WeatherService) {}
 }

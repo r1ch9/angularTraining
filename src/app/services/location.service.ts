@@ -39,4 +39,8 @@ export class LocationServiceService {
 
     this._selectedCities.unshift(city);
   }
+
+  removeCity(city: CityDatum){
+    this._selectedCities.splice(this._selectedCities.indexOf(city), 1);
+  }
 }
