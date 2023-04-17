@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { CityDatum } from 'src/app/interfaces/cities.interface';
 
 @Component({
   selector: 'app-list-of-items',
@@ -10,7 +11,13 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule]
 })
 export class ListOfItemsComponent {
-  @Input('item') item: string = '';
+  @Input('item') item: CityDatum = {
+      'name': '', 
+      'lat': 0, 
+      'lon': 0, 
+      'country': '', 
+      'state': ''
+  };
 
   constructor() {}
 }

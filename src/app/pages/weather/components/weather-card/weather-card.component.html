@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      {{city}}
+      <span *ngIf="currentWeather === 'sunny'"><ion-icon name="sunny-outline" slot="end" color="dark"></ion-icon></span>
+      <span *ngIf="currentWeather === 'Rain'"><ion-icon name="rainy-outline" slot="end" color="dark"></ion-icon></span>
+      <span *ngIf="currentWeather === 'thunderstorm'"><ion-icon name="thunderstorm-outline" slot="end" color="dark"></ion-icon></span>
+      <span *ngIf="currentWeather === 'Clouds'"><ion-icon name="cloudy-outline" slot="end" color="dark"></ion-icon></span>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{city.name}}, {{city.state}}
+  </ion-card-content>
+</ion-card>
