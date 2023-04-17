@@ -3,6 +3,7 @@
     <ion-label class="pill_text" color="dark">
       {{item.name}}, {{item.state}}
     </ion-label>
-    <ion-icon name="add-circle-outline" slot="end" color="dark"></ion-icon>
+      <ion-icon *ngIf="!obtainIcon()" name="remove-circle-outline" slot="end" color="dark"></ion-icon>
+      <ion-icon *ngIf="obtainIcon()" name="add-circle-outline" slot="end" color="dark"></ion-icon>
   </ion-item>
 </span>

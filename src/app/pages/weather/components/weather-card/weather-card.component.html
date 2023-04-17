@@ -3,9 +3,10 @@
     <ion-card-header>
       <ion-card-title>
         {{temperature}}
+        
         <span *ngIf="currentWeather === 'Clear'"><ion-icon name="sunny-outline" slot="end" color="dark"></ion-icon></span>
         <span *ngIf="currentWeather === 'Rain'"><ion-icon name="rainy-outline" slot="end" color="dark"></ion-icon></span>
-        <span *ngIf="currentWeather === 'thunderstorm'"><ion-icon name="thunderstorm-outline" slot="end" color="dark"></ion-icon></span>
+        <span *ngIf="currentWeather === 'Thunderstorm'"><ion-icon name="thunderstorm-outline" slot="end" color="dark"></ion-icon></span>
         <span *ngIf="currentWeather === 'Clouds'"><ion-icon name="cloudy-outline" slot="end" color="dark"></ion-icon></span>
       </ion-card-title>
     </ion-card-header>

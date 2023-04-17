@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CityDatum } from 'src/app/interfaces/cities.interface';
+import { LocationServiceService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-list-of-items',
@@ -19,5 +20,12 @@ export class ListOfItemsComponent {
       'state': ''
   };
 
-  constructor() {}
+  obtainIcon() {
+    if(this.locationServe.selectedCitiesList.includes(this.item)) {
+      return false
+    }
+    return true
+  }
+
+  constructor(private locationServe: LocationServiceService) {}
 }
