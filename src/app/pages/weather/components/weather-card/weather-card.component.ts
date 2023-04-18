@@ -41,7 +41,11 @@ export class WeatherCardComponent implements OnInit{
     this.http.get<CityWeather>(`${this._weatherService}/weather`, {params})
       .subscribe((resp: any) => {
         this.temperature = resp.main.temp;
-        this.currentWeather = resp.weather[0].main;
+        if(resp.weather[0].main === 'Drizzle') {
+          this.currentWeather = 'Rain';
+        } else {
+          this.currentWeather = resp.weather[0].main;
+        }
       })
     }
   }

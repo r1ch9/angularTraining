@@ -1,5 +1,9 @@
 <ion-card>
-  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+  <img alt="Clear" width="300" height="150" *ngIf="currentWeather === 'Clear'" src="../../../../../assets/edmonton-sun.jpg" />
+  <img alt="Rain" width="300" height="150" *ngIf="currentWeather === 'Rain'" src="../../../../../assets/paris-france-raining-day-unbrella.jpg" />
+  <img alt="Thunderstorm" width="300" height="150" *ngIf="currentWeather === 'Thunderstorm'" src="../../../../../assets/lightning-strike-4-11-2018-1.jpg" />
+  <img alt="Clouds" width="300" height="150" *ngIf="currentWeather === 'Clouds'" src="../../../../../assets/Oklahoma_City_cloudy_day.jpg" />
+  <img alt="Haze" width="300" height="150" *ngIf="currentWeather === 'Haze'" src="../../../../../assets/city-londres_polext165-1024x632.jpg" />
   <ion-card-header>
     <ion-card-title>{{temperature}}</ion-card-title>
     <ion-card-subtitle>{{city.name}}, {{city.state}}</ion-card-subtitle>
@@ -11,6 +15,7 @@
       <ion-icon *ngIf="currentWeather === 'Rain'" name="rainy-outline" color="dark"></ion-icon>
       <ion-icon *ngIf="currentWeather === 'Thunderstorm'" name="thunderstorm-outline" color="dark"></ion-icon>
       <ion-icon *ngIf="currentWeather === 'Clouds'" name="cloudy-outline" color="dark"></ion-icon>
+      <ion-icon *ngIf="currentWeather === 'Haze'" name="cloud-download-outline" color="dark"></ion-icon>
     
   
       <ion-icon name="trash-outline" slot="end" color="dark" class="mouse_over" (click)="removeLocation(city)"></ion-icon>
