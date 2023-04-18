@@ -17,11 +17,14 @@ export class NewsCardsComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('new', this.new)
   }
 
   readNew() {
     let window: any = open(`${this.new.web_url}`, "_blank");
     window.focus();
+  }
+
+  deleteNews() {
+    console.log('deleteThis', this.new)
   }
 }
