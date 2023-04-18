@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
 
 <ion-content [fullscreen]="true">
-  
+    <div size="4" *ngFor="let city of selectedCities">
+        <app-news-city [city]="city"></app-news-city>
+    </div>
 </ion-content>

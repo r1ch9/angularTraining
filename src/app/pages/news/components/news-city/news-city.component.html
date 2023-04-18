@@ -1,0 +1,7 @@
+<ion-grid>
+    <ion-row>
+        <ion-col size="3" *ngFor="let new of getListOfNews">
+            <app-news-cards [new]="new"></app-news-cards>
+        </ion-col>
+    </ion-row>
+</ion-grid>

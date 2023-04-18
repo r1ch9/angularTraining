@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+
+// Components y Servicios
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { LocationServiceService } from 'src/app/services/location.service';
+import { NewsCityComponent } from './components/news-city/news-city.component';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.page.html',
   styleUrls: ['./news.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, NavbarComponent]
+  imports: [IonicModule, CommonModule, NavbarComponent, NewsCityComponent]
 })
-export class NewsPage implements OnInit {
+export class NewsPage {
+  constructor(private locationService: LocationServiceService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  get selectedCities() {
+    return this.locationService.selectedCitiesList
   }
-
 }

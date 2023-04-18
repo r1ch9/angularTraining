@@ -1,0 +1,15 @@
+<ion-card>
+  <div>
+    <img alt="Clear" class="weather_pic_t" width="300" height="150" src="../../../../../assets/edmonton-sun.jpg" />
+  </div>
+  <ion-card-header>
+    <ion-card-subtitle class="card_subt">{{new.section_name}}</ion-card-subtitle>
+    <ion-card-title class="card_tittle">{{new.snippet}}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item class="city_pills" lines="none">
+      <ion-icon name="open-outline" slot="end" color="dark" class="mouse_over" (click)="readNew()"></ion-icon>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
