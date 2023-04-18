@@ -1,3 +1,33 @@
 .mouse_over {
     cursor: pointer;
 }
+
+.weather_pic {
+    &.clear {
+        background-image: url('../../../../../assets/edmonton-sun.jpg');
+    }
+
+    &.rain {
+        background-image: url('../../../../../assets/paris-france-raining-day-unbrella.jpg');
+    }
+
+    &.thunderstorm {
+        background-image: url('../../../../../assets/lightning-strike-4-11-2018-1.jpg');
+    }
+
+    &.clouds {
+        background-image: url('../../../../../assets/Oklahoma_City_cloudy_day.jpg');
+    }
+
+    &.haze {
+        background-image: url('../../../../../assets/city-londres_polext165-1024x632.jpg');
+    }
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.weather_pic_t {
+    opacity: 0;
+}

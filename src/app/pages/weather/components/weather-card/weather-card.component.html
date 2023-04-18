@@ -1,9 +1,7 @@
 <ion-card>
-  <img alt="Clear" width="300" height="150" *ngIf="currentWeather === 'Clear'" src="../../../../../assets/edmonton-sun.jpg" />
-  <img alt="Rain" width="300" height="150" *ngIf="currentWeather === 'Rain'" src="../../../../../assets/paris-france-raining-day-unbrella.jpg" />
-  <img alt="Thunderstorm" width="300" height="150" *ngIf="currentWeather === 'Thunderstorm'" src="../../../../../assets/lightning-strike-4-11-2018-1.jpg" />
-  <img alt="Clouds" width="300" height="150" *ngIf="currentWeather === 'Clouds'" src="../../../../../assets/Oklahoma_City_cloudy_day.jpg" />
-  <img alt="Haze" width="300" height="150" *ngIf="currentWeather === 'Haze'" src="../../../../../assets/city-londres_polext165-1024x632.jpg" />
+  <div [ngClass]="weatherPic()">
+    <img alt="Clear" class="weather_pic_t" width="300" height="150" src="../../../../../assets/edmonton-sun.jpg" />
+  </div>
   <ion-card-header>
     <ion-card-title>{{temperature}}</ion-card-title>
     <ion-card-subtitle>{{city.name}}, {{city.state}}</ion-card-subtitle>

@@ -54,5 +54,34 @@ export class WeatherCardComponent implements OnInit{
     this.weatherService.removeLication(city)
   }
 
+  weatherPic() {
+
+    switch (this.currentWeather) {
+      case 'Clear':
+        return 'weather_pic clear'
+        break;
+    
+      case 'Rain' || 'Drizzle':
+        return 'weather_pic rain'
+        break;
+
+      case 'Thunderstorm':
+        return 'weather_pic thunderstorm'
+        break;
+      
+      case 'Clouds':
+        return 'weather_pic clouds'
+        break;
+      
+      case 'Haze':
+        return 'weather_pic haze'
+        break;
+
+      default:
+        return 'weather_pic clear'
+        break;
+    }
+  }
+
   constructor(private http: HttpClient, private weatherService: WeatherService) {}
 }
