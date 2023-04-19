@@ -24,7 +24,7 @@ export class NewsCardsComponent  implements OnInit {
     window.focus();
   }
 
-  deleteNews() {
-    console.log('deleteThis', this.new)
+  getInfo() {
+    console.log('getInfo', this.new)
   }
 }

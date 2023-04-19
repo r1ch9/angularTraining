@@ -78,7 +78,7 @@ export class WeatherCardComponent implements OnInit{
         break;
 
       default:
-        return 'weather_pic clear'
+        return 'weather_pic_t clear'
         break;
     }
   }
