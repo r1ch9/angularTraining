@@ -1,10 +1,34 @@
 .block_news {
     padding: 25px 0 0 0;
-    border: rgb(122, 121, 121) 1px solid;
+    border: rgb(0, 0, 0) 1px solid;
     margin-bottom: 15px;
     background-color: rgb(122, 121, 121);
+}
+
+.newsTitle {
+    font-size: 25px;
     font-family: Verdana;
     font-family: 'PT Sans';
-
     text-decoration: underline;
+    color: white;
+}
+
+.spinner {
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.textLeft {
+    display: flex;
+    float: right;
+    color: white;
 }

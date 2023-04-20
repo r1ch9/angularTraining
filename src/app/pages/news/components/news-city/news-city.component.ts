@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-
-
-import { CityDatum } from 'src/app/interfaces/cities.interface';
+import { Observable, Subscription, interval } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+import { CityDatum } from 'src/app/interfaces/cities.interface';
+
 import { NewsCardsComponent } from '../news-cards/news-cards.component';
+import { NewsService } from '../../../../services/news.service';
 
 @Component({
   selector: 'app-news-city',
@@ -28,24 +29,43 @@ export class NewsCityComponent  implements OnInit {
     state: ''
   }
 
-  private _newsApi = 'd1xvoWWyVGZrAE3d6yjAEoI0dVuxdczR';
-  private _newsRequest = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'
+  // Create data to make interval before of next request.
+  private secondsCounter: Observable<number> | undefined = interval(1000);
+  private subscriptionSeconds: Subscription | undefined;
+  
   public listOfNews: any[] = [];
-
-  constructor(private http: HttpClient) { }
+  public secondsAmount: number = 0;
 
   ngOnInit() {
-    const params = new HttpParams()
-    .set('api-key', this._newsApi)
-    .set('sort', 'newest')
-    .set('fq', `glocations:("${this.city.name}")`)
+    this.requestToGetNews()
+  }
 
-    this.http.get(`${this._newsRequest}`, {params})
+  resetInterval() {
+    this.subscriptionSeconds?.unsubscribe
+    this.requestToGetNews();
+  }
+
+  requestToGetNews() {
+    this.subscriptionSeconds = this.secondsCounter!.subscribe((n: number) => {
+      if(n <= 60) {
+        this.secondsAmount = n;
+      } else if(this.secondsAmount === 60){
+        this.resetInterval()
+      }
+    });
+
+    const params = new HttpParams()
+    .set('api-key', this.NewsService._newsApi)
+    .set('sort', 'newest')
+    .set('fq', `glocations:("${this.city.name}")`);
+
+    this.NewsService.settingNews(true);
+
+    this.http.get(`${this.NewsService._newsRequest}`, {params})
       .subscribe((resp: any) => {
-        if(resp.status === "OK") {
-          resp.response.docs.map((doc: any) => {
-            this.listOfNews.push(doc)
-          })
+        this.NewsService.settingNews(false);
+        if (resp.status === "OK") {
+          this.listOfNews = resp.response.docs;
         }
       })
   }
@@ -54,4 +74,9 @@ export class NewsCityComponent  implements OnInit {
     return this.listOfNews
   }
 
+  get gettingNews() {
+    return this.NewsService.gettingNewsGetter
+  }
+
+  constructor(private http: HttpClient, private NewsService: NewsService) { }
 }
