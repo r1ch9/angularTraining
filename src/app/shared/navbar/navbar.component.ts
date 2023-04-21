@@ -24,8 +24,13 @@ import { NewsPage } from 'src/app/pages/news/news.page';
 export class NavbarComponent {
   constructor(private router: Router){}
   isOnHomePage: boolean = this.router.url === '/home'; 
+  isModalOpen: boolean = false;
   
   navigate(route: string) {
     this.router.navigate([`/${route}`]);
+  }
+
+  toggleModal() {
+    this.isModalOpen = !this.isModalOpen;
   }
 }

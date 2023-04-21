@@ -1,7 +1,7 @@
 <ion-grid class="block_news">
     <ion-title>
         <span class="newsTitle">{{city.name}}</span>
-        <span *ngIf="gettingNews" class="textLeft">   Loading news...   <ion-icon class="spinner" name="reload-outline" color="dark"></ion-icon></span>
+        <span *ngIf="gettingNews" class="textLeft">Loading news... <span> </span><ion-icon class="spinner" name="reload-outline" color="dark"></ion-icon> </span>
         <span *ngIf="!gettingNews" class="textLeft">   {{secondsAmount}}  seconds since last refresh.</span>
     </ion-title>
     <ion-row>
@@ -9,4 +9,18 @@
             <app-news-cards [new]="new" *ngIf="i <= 3"></app-news-cards>
         </ion-col>
     </ion-row>
+
+    <ion-card *ngIf="errOnReq && listOfNews.length > 0">
+        <div class="errorPic">
+            <img alt="Silhouette of mountains" class="imgT" width="300" height="150" src="../../../../../assets/error-429-concept-illustration_114360-4206.jpg" />
+        </div>
+        <ion-card-header>
+          <ion-card-title>Server Error</ion-card-title>
+          <ion-card-subtitle>Something went wrong.</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+            There is an error while requesting news. Please try again later.
+        </ion-card-content>
+      </ion-card>
 </ion-grid>                               

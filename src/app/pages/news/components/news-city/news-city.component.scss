@@ -32,3 +32,14 @@
     float: right;
     color: white;
 }
+
+.errorPic {
+    background-image: url('../../../../../assets/429-too-many-requests.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.imgT {
+    opacity: 0;
+}

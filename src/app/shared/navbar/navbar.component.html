@@ -1,29 +1,29 @@
+<ion-header>
+  <ion-tab-bar slot="start" class="nav_header">
+    <ion-button id="modal-id" *ngIf="isOnHomePage" class="text_dark">
+      Add new location <ion-icon name="add-circle-outline" color="dark"></ion-icon>
+    </ion-button>
 
- <ion-header>
-    <ion-toolbar>
-      <ion-nav>
-      <ion-button id="open-modal" *ngIf="isOnHomePage">
-        Add new location <ion-icon name="add-circle-outline" slot="end" color="dark"></ion-icon>
-      </ion-button>
-      <ion-button (click)="navigate('/home')" *ngIf="!isOnHomePage">
-        Back to home page <ion-icon name="home-outline" slot="end" color="dark"></ion-icon>
-      </ion-button>
-        <ion-button (click)="navigate('weather')">
-          Weather <ion-icon name="cloud-outline" slot="end" color="dark"></ion-icon>
-        </ion-button>
-      <ion-button (click)="navigate('news')">
-        News <ion-icon name="newspaper-outline" slot="end" color="dark"></ion-icon>
-      </ion-button>
-    </ion-nav>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-modal trigger="open-modal">
-      <ng-template>
-        <ion-content>
-          <app-location></app-location>
-        </ion-content>
-      </ng-template>
-    </ion-modal>
-  </ion-content>
+    <ion-button (click)="navigate('/home')" *ngIf="!isOnHomePage" class="text_dark">
+      Back to home page <ion-icon name="home-outline" color="dark"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="navigate('weather')" class="text_dark">
+      Weather <ion-icon name="cloud-outline" color="dark"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="navigate('news')" class="text_dark">
+      News <ion-icon name="newspaper-outline" color="dark"></ion-icon>
+    </ion-button>
+  </ion-tab-bar>
+</ion-header>
+
+<ion-content>
+  <ion-modal trigger="modal-id">
+    <ng-template>
+      <ion-content>
+        <app-location></app-location>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

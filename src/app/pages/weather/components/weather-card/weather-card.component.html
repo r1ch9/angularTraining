@@ -1,10 +1,10 @@
-<ion-card>
+<ion-card class="weatherCard">
   <div [ngClass]="weatherPic()">
     <img alt="Clear" class="weather_pic_t" width="300" height="150" src="../../../../../assets/edmonton-sun.jpg" />
   </div>
-  <ion-card-header>
-    <ion-card-title>{{temperature}}</ion-card-title>
-    <ion-card-subtitle>{{city.name}}, {{city.state}}</ion-card-subtitle>
+  <ion-card-header class="weatherCard_header">
+    <ion-card-title><strong>{{temperature}}</strong></ion-card-title>
+    <ion-card-subtitle class="weatherCityName"><strong>{{city.name}}, {{city.state}}</strong></ion-card-subtitle>
   </ion-card-header>
 
   <ion-card-content>
