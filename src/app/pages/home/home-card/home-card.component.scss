@@ -1,0 +1,11 @@
+.mouse_over {
+    cursor: pointer;
+    :hover{
+        background-color: red;
+        *content: 'Remove location?';
+    }
+}
+
+.weatherCityName{
+    color: black;
+}

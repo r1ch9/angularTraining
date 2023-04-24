@@ -2,5 +2,15 @@
 <ion-app>
   <app-navbar></app-navbar>
 
-  <ion-content [fullscreen]="true"></ion-content>
+  <ion-content [fullscreen]="true">
+    <ion-grid>
+      <ion-row *ngFor="let city of cityList">
+        <ion-col size="4"></ion-col>
+        <ion-col size="4">
+          <app-home-card [city]="city"></app-home-card>
+        </ion-col>
+        <ion-col size="4"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 </ion-app>

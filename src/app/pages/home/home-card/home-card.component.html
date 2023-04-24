@@ -1,0 +1,6 @@
+<ion-card (click)="removeLocation(city)" class="mouse_over" (mouseenter)="mouseOver=true" (mouseleave)="mouseOver=false">
+  <ion-card-header class="weatherCard_header">
+    <ion-card-subtitle *ngIf="!mouseOver" class="weatherCityName"><strong>{{city.name}}, {{city.state}}</strong></ion-card-subtitle>
+    <ion-card-subtitle *ngIf="mouseOver"  class="weatherCityName"><strong>Remove Location?</strong></ion-card-subtitle>
+  </ion-card-header>
+</ion-card>
