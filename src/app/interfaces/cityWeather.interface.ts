@@ -51,3 +51,16 @@ export interface Wind {
     deg:   number;
     gust:  number;
 }
+
+export interface cityWeatherStore {
+    weatherCities: weatherCity[];
+}
+export interface weatherCity {
+    lat:     number;
+    lon:     number;
+    country: string;
+    state:   string;
+    temperature: number;
+    currentWeather: string;
+    name:    string;
+}

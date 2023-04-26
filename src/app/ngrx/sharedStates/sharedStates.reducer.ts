@@ -11,7 +11,7 @@ import packageInfo from '../../../data/data.json';
 const listOfCities = packageInfo.cityData;
 
 // Initial state
-export const initialState: storeData = {
+const initialState: storeData = {
     listOfCities,
     selectedCities: [],
     textToFilter: '',

@@ -3,17 +3,17 @@
     <img alt="Clear" class="weather_pic_t" width="300" height="150" src="../../../../../assets/edmonton-sun.jpg" />
   </div>
   <ion-card-header class="weatherCard_header">
-    <ion-card-title><strong>{{temperature}}</strong></ion-card-title>
+    <ion-card-title><strong>{{city.temperature}}</strong></ion-card-title>
     <ion-card-subtitle class="weatherCityName"><strong>{{city.name}}, {{city.state}}</strong></ion-card-subtitle>
   </ion-card-header>
 
   <ion-card-content>
     <ion-item class="city_pills" lines="none">
-      <ion-icon *ngIf="currentWeather === 'Clear'" name="sunny-outline" color="dark"></ion-icon>
-      <ion-icon *ngIf="currentWeather === 'Rain'" name="rainy-outline" color="dark"></ion-icon>
-      <ion-icon *ngIf="currentWeather === 'Thunderstorm'" name="thunderstorm-outline" color="dark"></ion-icon>
-      <ion-icon *ngIf="currentWeather === 'Clouds'" name="cloudy-outline" color="dark"></ion-icon>
-      <ion-icon *ngIf="currentWeather === 'Haze'" name="cloud-download-outline" color="dark"></ion-icon>
+      <ion-icon *ngIf="city.currentWeather === 'Clear'" name="sunny-outline" color="dark"></ion-icon>
+      <ion-icon *ngIf="city.currentWeather === 'Rain'" name="rainy-outline" color="dark"></ion-icon>
+      <ion-icon *ngIf="city.currentWeather === 'Thunderstorm'" name="thunderstorm-outline" color="dark"></ion-icon>
+      <ion-icon *ngIf="city.currentWeather === 'Clouds'" name="cloudy-outline" color="dark"></ion-icon>
+      <ion-icon *ngIf="city.currentWeather === 'Haze'" name="cloud-download-outline" color="dark"></ion-icon>
     
   
       <ion-icon name="trash-outline" slot="end" color="dark" class="mouse_over" (click)="removeLocation(city)"></ion-icon>

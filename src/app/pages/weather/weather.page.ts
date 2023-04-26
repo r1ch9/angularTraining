@@ -10,7 +10,9 @@ import { WeatherCardComponent } from './components/weather-card/weather-card.com
 
 // Services
 import { WeatherService } from '../../services/weather.service';
+import { Store } from '@ngrx/store';
 
+import { CityWeather, cityWeatherStore } from 'src/app/interfaces/cityWeather.interface';
 
 @Component({
   selector: 'app-weather',
@@ -27,9 +29,19 @@ import { WeatherService } from '../../services/weather.service';
   ]
 })
 export class WeatherPage {
-  constructor(private weatherService: WeatherService){}
+
+  constructor(private weatherService: WeatherService, private weatherStore: Store<cityWeatherStore>){
+    this.weatherStore
+      .subscribe((weatherCity: any) => {
+        // this.listOfSelectedCities = [...weatherCity.weather.weatherCities]
+      })
+  }
 
   get listOfSelectedCities() {
-    return this.weatherService.listOfSelectedCities;
+    this.weatherService.listOfSelectedCities.map((item) => {
+      this.weatherService.req(item)
+    });
+    
+    return this.weatherService.listOfWeather;
   }
 }

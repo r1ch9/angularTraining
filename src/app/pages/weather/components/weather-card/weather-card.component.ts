@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
 
 // Interface
 import { CityDatum } from 'src/app/interfaces/cities.interface';
 
-// Interfaces
-import { CityWeather } from 'src/app/interfaces/cityWeather.interface';
+// Service
 import { WeatherService } from 'src/app/services/weather.service';
+import { weatherCity } from 'src/app/interfaces/cityWeather.interface';
 
 @Component({
   selector: 'app-weather-card',
@@ -17,50 +16,29 @@ import { WeatherService } from 'src/app/services/weather.service';
   standalone: true,
   imports: [IonicModule, CommonModule],
 })
-export class WeatherCardComponent implements OnInit{
-  private _appId: string = '106df6a337f9bbed1366c7b066126b0b';
-  private _weatherService = 'https://api.openweathermap.org/data/2.5';
-  
-  public currentWeather: string = '';
-  public temperature: number = 0;
+export class WeatherCardComponent implements OnInit {
 
-  @Input('city') city: CityDatum = {
+  @Input('city') city: weatherCity = {
     name: '',
     lat: 0,
     lon: 0,
     country: '',
     state: '',
+    temperature: 0,
+    currentWeather: ''
   };
-
-  ngOnInit() {
-    if(this.city.lat !== 0){
-      
-      const params = new HttpParams()
-      .set('lat', this.city.lat)
-      .set('lon', this.city.lon)
-      .set('appid', this._appId);
-
-      this.http.get<CityWeather>(`${this._weatherService}/weather`, {params})
-        .subscribe((resp: any) => {
-          this.temperature = resp.main.temp;
-          if(resp.weather[0].main === 'Drizzle') {
-            this.currentWeather = 'Rain';
-          } else if(resp.weather[0].main === 'Mist'){
-            this.currentWeather = 'Haze';
-          } else {
-            this.currentWeather = resp.weather[0].main;
-          }
-        })
-    }
-  }
 
   removeLocation(city: CityDatum) {
     this.weatherService.removeLication(city)
   }
 
+  ngOnInit() {
+    this.weatherService.req(this.city)
+  }
+
   weatherPic() {
 
-    switch (this.currentWeather) {
+    switch (this.city.currentWeather) {
       case 'Clear':
         return 'weather_pic clear'
         break;
@@ -87,5 +65,5 @@ export class WeatherCardComponent implements OnInit{
     }
   }
 
-  constructor(private http: HttpClient, private weatherService: WeatherService) {}
+  constructor(private weatherService: WeatherService) {}
 }

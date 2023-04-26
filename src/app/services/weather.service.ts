@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { LocationServiceService } from './location.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 // NgRx
 import { Store } from '@ngrx/store';
+import { addNewCityweather } from '../ngrx/weather/weather.actions';
 
 // Interface
 import { CityDatum, locationStore } from '../interfaces/cities.interface';
-import { CityWeather } from '../interfaces/cityWeather.interface';
+import { CityWeather, weatherCity, cityWeatherStore } from '../interfaces/cityWeather.interface';
+
+// Service
+import { LocationServiceService } from './location.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +19,70 @@ import { CityWeather } from '../interfaces/cityWeather.interface';
 export class WeatherService {
   public cityWeather: CityWeather[] = [];
   public listOfSelectedCities: CityDatum[] = [];
-  
-  // Change the logic to use the store.
-  // get listOfSelectedCities() {
-  //   return [...this._locationService.selectedCitiesList];
-  // }
+  public listOfWeather: weatherCity[] = [];
+
+  private _appId: string = '106df6a337f9bbed1366c7b066126b0b';
+  private _weatherService = 'https://api.openweathermap.org/data/2.5';
     
   removeLication(city: CityDatum) {
     this._locationService.removeCity(city)
   }
 
-  constructor(private _locationService: LocationServiceService, private store: Store<locationStore>) {
-    this.store.select('location')
-      .subscribe((location) => {
-        this.listOfSelectedCities = [...location.selectedCities];
+  req(city: CityDatum) {
+    let temperature: number = 0;
+    let currentWeather: string = '';
+
+    if(this.listOfWeather.some(cities => cities.name === city.name)){
+      return;
+    }
+
+    const params = new HttpParams()
+      .set('lat', city.lat)
+      .set('lon', city.lon)
+      .set('appid', this._appId);
+
+    this.http.get<CityWeather>(`${this._weatherService}/weather`, {params})
+      .subscribe((resp: any) => {
+        temperature = resp.main.temp;
+        if(resp.weather[0].main === 'Drizzle') {
+          currentWeather = 'Rain';
+        } else if(resp.weather[0].main === 'Mist' || resp.weather[0].main === 'Fog'){
+          currentWeather = 'Haze';
+        } else {
+          currentWeather = resp.weather[0].main;
+        }
+
+        const cityWWeather: weatherCity = {
+          name:    city.name,
+          lat:     city.lat,
+          lon:     city.lon,
+          country: city.country,
+          state:   city.state,
+          temperature,
+          currentWeather,
+        };
+        
+        if(!this.listOfWeather.some(city => city.name === cityWWeather.name)){ 
+          console.log('verificar', this.listOfWeather, cityWWeather)
+          this.weatherStore.dispatch(addNewCityweather({city: cityWWeather}))
+         }
+        
       })
+    
+  }
+
+  constructor(
+    private _locationService: LocationServiceService, 
+    private locationStore: Store<locationStore>, 
+    private http: HttpClient,
+    private weatherStore: Store<cityWeatherStore>
+  ) {
+    this.locationStore.select('location')
+    .subscribe((location) => {
+      this.listOfSelectedCities = [...location.selectedCities];
+    })
+
+    this.weatherStore.subscribe((state: any) => this.listOfWeather = [...state.weather.weatherCities])
+  
   }
 }

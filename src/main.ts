@@ -8,11 +8,12 @@ import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
-import { StoreDevtoolsModule, provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 
-import { StoreModule, provideState, provideStore } from '@ngrx/store';
+import { StoreModule, provideStore } from '@ngrx/store';
 import { locationReducer } from './app/ngrx/sharedStates/sharedStates.reducer';
+import { weatherReducer } from './app/ngrx/weather/weather.reducer';
 
 if (environment.production) {
   enableProdMode();
@@ -21,18 +22,11 @@ if (environment.production) {
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    importProvidersFrom(IonicModule.forRoot({}), HttpClientModule, StoreModule.forRoot({}), 
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 25, // Retains last 25 states
-    //   logOnly: !isDevMode(), // Restrict extension to log-only mode
-    //   // autoPause: true, // Pauses recording actions and state changes when the extension window is not open
-    //   trace: false, //  If set to true, will include stack trace for every dispatched action, so you can see it in trace tab jumping directly to that part of code
-    //   traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
-    // }),
-    ),
+    importProvidersFrom(IonicModule.forRoot({}), HttpClientModule, StoreModule.forRoot({})),
     provideRouter(routes),
     provideStore({
-      location: locationReducer
+      location: locationReducer,
+      weather: weatherReducer
     }),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states

@@ -27,17 +27,9 @@ import { LocationServiceService } from 'src/app/services/location.service';
 export class NavbarComponent {
   constructor(private router: Router, private _locationService: LocationServiceService){}
   isOnHomePage: boolean = this.router.url === '/home'; 
-  isModalOpen: boolean = false;
-
-  @ViewChild('modalId') modal = '';
   
   navigate(route: string) {
     this._locationService.countryName('');
     this.router.navigate([`/${route}`]);
-  }
-
-  toggleModal() {
-    this.isModalOpen = !this.isModalOpen;
-    console.log(this.modal)
   }
 }
