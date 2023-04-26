@@ -20,6 +20,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 export class WeatherCardComponent implements OnInit{
   private _appId: string = '106df6a337f9bbed1366c7b066126b0b';
   private _weatherService = 'https://api.openweathermap.org/data/2.5';
+  
   public currentWeather: string = '';
   public temperature: number = 0;
 
@@ -33,23 +34,23 @@ export class WeatherCardComponent implements OnInit{
 
   ngOnInit() {
     if(this.city.lat !== 0){
+      
       const params = new HttpParams()
       .set('lat', this.city.lat)
       .set('lon', this.city.lon)
       .set('appid', this._appId);
 
-    this.http.get<CityWeather>(`${this._weatherService}/weather`, {params})
-      .subscribe((resp: any) => {
-        console.log(resp)
-        this.temperature = resp.main.temp;
-        if(resp.weather[0].main === 'Drizzle') {
-          this.currentWeather = 'Rain';
-        } else if(resp.weather[0].main === 'Mist'){
-          this.currentWeather = 'Haze';
-        } else {
-          this.currentWeather = resp.weather[0].main;
-        }
-      })
+      this.http.get<CityWeather>(`${this._weatherService}/weather`, {params})
+        .subscribe((resp: any) => {
+          this.temperature = resp.main.temp;
+          if(resp.weather[0].main === 'Drizzle') {
+            this.currentWeather = 'Rain';
+          } else if(resp.weather[0].main === 'Mist'){
+            this.currentWeather = 'Haze';
+          } else {
+            this.currentWeather = resp.weather[0].main;
+          }
+        })
     }
   }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { LocationComponent } from 'src/app/pages/location/location.component';
 import { WeatherPage } from 'src/app/pages/weather/weather.page';
 import { NewsPage } from 'src/app/pages/news/news.page';
+
+//Services
+import { LocationServiceService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,15 +25,19 @@ import { NewsPage } from 'src/app/pages/news/news.page';
   ]
 })
 export class NavbarComponent {
-  constructor(private router: Router){}
+  constructor(private router: Router, private _locationService: LocationServiceService){}
   isOnHomePage: boolean = this.router.url === '/home'; 
   isModalOpen: boolean = false;
+
+  @ViewChild('modalId') modal = '';
   
   navigate(route: string) {
+    this._locationService.countryName('');
     this.router.navigate([`/${route}`]);
   }
 
   toggleModal() {
     this.isModalOpen = !this.isModalOpen;
+    console.log(this.modal)
   }
 }

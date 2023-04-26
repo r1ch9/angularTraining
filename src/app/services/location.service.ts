@@ -1,19 +1,28 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import packageInfo from '../../data/data.json'; 
-import { CityDatum } from '../interfaces/cities.interface';
+import { CityDatum, locationStore } from '../interfaces/cities.interface';
+
+//Actions
+import { removeLocation, selectNewLocation, setCountryName } from '../ngrx/sharedStates/sharedStates.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationServiceService {
-
   private _citiesList: CityDatum[] = packageInfo.cityData;
   private _listToShow: CityDatum[] = this._citiesList;
   private _textToFilter: string = '';
   private _selectedCities: CityDatum[] = [];
 
-  constructor() {}
+  constructor(private store: Store<locationStore>) {
+    this.store.select('location')
+      .subscribe((location) => {
+        this._textToFilter = location.textToFilter;
+        this._selectedCities = [...location.selectedCities];
+      });
+  }
 
   get getCitiesLists() {
     if (this._textToFilter !== ''){
@@ -29,18 +38,17 @@ export class LocationServiceService {
   }
 
   countryName(value: string) {
-    this._textToFilter = value;
+    this.store.dispatch(setCountryName({value}))
   }
 
   addCity(city: CityDatum){
-    if(this._selectedCities.includes(city)) {
-      return;
+    if(!this._selectedCities.includes(city)){
+      this.store.dispatch(selectNewLocation({city}));
     }
-
-    this._selectedCities.unshift(city);
   }
 
   removeCity(city: CityDatum){
-    this._selectedCities.splice(this._selectedCities.indexOf(city), 1);
+    const items = this._selectedCities.filter((item) => item !== city);
+    this.store.dispatch(removeLocation({cities: items}));
   }
 }

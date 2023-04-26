@@ -3,7 +3,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="3" *ngFor="let city of listOfSelectedCities">
+      <ion-col size-md="3" size-sm="12" *ngFor="let city of listOfSelectedCities">
         <app-weather-card [city]="city"></app-weather-card>
       </ion-col>
     </ion-row>
