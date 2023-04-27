@@ -11,3 +11,8 @@ export const addNewCityweather = createAction(
 export const getCityWeather = createAction(
     '[Weather] addNewCityWeather'
 );
+
+export const setCityweather = createAction(
+    '[Weather] setCityWeather',
+    props<{list: weatherCity[]}>()
+);

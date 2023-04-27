@@ -5,7 +5,7 @@ import packageInfo from '../../data/data.json';
 import { CityDatum, locationStore } from '../interfaces/cities.interface';
 
 //Actions
-import { removeLocation, selectNewLocation, setCountryName } from '../ngrx/sharedStates/sharedStates.actions';
+import { getListLocations, removeLocation, selectNewLocation, setCountryName } from '../ngrx/sharedStates/sharedStates.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +48,7 @@ export class LocationServiceService {
   }
 
   removeCity(city: CityDatum){
-    const items = this._selectedCities.filter((item) => item !== city);
+    const items = this._selectedCities.filter((item) => item.name !== city.name);
     this.store.dispatch(removeLocation({cities: items}));
   }
 }

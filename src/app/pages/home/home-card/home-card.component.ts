@@ -21,5 +21,4 @@ export class HomeCardComponent  implements OnInit {
   removeLocation(city: any) {
     this.LocationServiceService.removeCity(city)
   }
-
 }

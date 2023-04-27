@@ -17,3 +17,7 @@ export const setCountryName = createAction(
     '[Locations] setCountryName',
     props<{value: string}>()
 );
+
+export const getListLocations = createAction(
+    '[Locations] getListLocation',
+);

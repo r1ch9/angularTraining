@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 // NgRx
 import { Store } from '@ngrx/store';
-import { addNewCityweather } from '../ngrx/weather/weather.actions';
+import { addNewCityweather, setCityweather } from '../ngrx/weather/weather.actions';
 
 // Interface
 import { CityDatum, locationStore } from '../interfaces/cities.interface';
@@ -25,7 +25,9 @@ export class WeatherService {
   private _weatherService = 'https://api.openweathermap.org/data/2.5';
     
   removeLication(city: CityDatum) {
-    this._locationService.removeCity(city)
+    const items = this.listOfWeather.filter((item) => item.name !== city.name);
+    this.weatherStore.dispatch(setCityweather({list: items}))
+    this._locationService.removeCity(city);
   }
 
   req(city: CityDatum) {
@@ -63,7 +65,6 @@ export class WeatherService {
         };
         
         if(!this.listOfWeather.some(city => city.name === cityWWeather.name)){ 
-          console.log('verificar', this.listOfWeather, cityWWeather)
           this.weatherStore.dispatch(addNewCityweather({city: cityWWeather}))
          }
         

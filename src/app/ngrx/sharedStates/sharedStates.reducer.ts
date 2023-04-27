@@ -5,7 +5,7 @@ import { createReducer, on } from '@ngrx/store';
 import { CityDatum } from 'src/app/interfaces/cities.interface';
 
 // Actions
-import { removeLocation, selectNewLocation, setCountryName } from "./sharedStates.actions";
+import { getListLocations, removeLocation, selectNewLocation, setCountryName } from "./sharedStates.actions";
 
 import packageInfo from '../../../data/data.json'; 
 const listOfCities = packageInfo.cityData;
@@ -23,6 +23,7 @@ export const locationReducer = createReducer(
     on(selectNewLocation, (state, { city }) => ({ ...state, selectedCities: [...state.selectedCities, city] })),
     on(removeLocation, (state, props) => ({...state, selectedCities: props.cities})),
     on(setCountryName, (state, props) => ({...state, textToFilter: props.value})),
+    on(getListLocations, (state) => state)
 );
 
 // Interfaces
